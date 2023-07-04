@@ -4,13 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Images of the website Design
 
 ### Login Page
-![Landing-Page](../inotebook/INotebook%20SS/1.jpg)
+![Landing-Page](./INotebook%20SS/1.jpg)
 ### Signup Page
-![Landing-Page](../inotebook/INotebook%20SS/2.jpg)
+![Landing-Page](./INotebook%20SS/2.jpg)
 ### Add a Note 
-![Landing-Page](../inotebook/INotebook%20SS/3.jpg)
+![Landing-Page](./INotebook%20SS/3.jpg)
 ### Update a note modal
-![Landing-Page](../inotebook/INotebook%20SS/4.jpg)
+![Landing-Page](./INotebook%20SS/4.jpg)
 
 
 
