@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav className="navbar navbar-expand-lg navbar-dark color1 ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             INoteBook
@@ -61,14 +61,14 @@ const Navbar = () => {
             {!localStorage.getItem("token") ? (
               <form className="d-flex">
                 <Link
-                  className="btn btn-outline-primary mx-2"
+                  className="btn btn-outline-primary mx-2 glow-on-hover glowing"
                   to="/login"
                   role="button"
                 >
                   Login
                 </Link>
                 <Link
-                  className="btn btn-outline-primary mx-2"
+                  className="btn btn-outline-primary mx-2 glow-on-hover glowing "
                   to="/signup"
                   role="button"
                 >
@@ -76,7 +76,7 @@ const Navbar = () => {
                 </Link>
               </form>
             ) : (
-              <button onClick={handleLogout} className="btn btn-outline-primary">
+              <button onClick={handleLogout} className="btn btn-outline-primary glow-on-hover glowing">
                 Logout
               </button>
             )}

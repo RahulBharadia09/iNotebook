@@ -90,8 +90,8 @@ const NotesComponent = (props) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <form>
-              <div className="container my-3 fw-bold">
-                <h3>Update Note </h3>
+              <div className="container mb-2 my-3 fw-bold">
+                <h3 className="text-center">Update Note </h3>
                 <div className="mb-3 my-2">
                   <label htmlFor="etitle" className="form-label">
                     Title
@@ -149,7 +149,7 @@ const NotesComponent = (props) => {
                 <button
                   onClick={handleClick}
                   type="button"
-                  className=" btn btn-outline-primary"
+                  className=" btn btn-outline-primary glow-on-hover glowing"
                   disabled={
                     note.etitle.length < 5 || note.edescription.length < 5
                   }
@@ -165,7 +165,7 @@ const NotesComponent = (props) => {
       <div className="container">
         <h2>Your Notes</h2>
 
-        {/* {notes.length === 0 && "No Notes to Display"} */}
+        {notes.length === 0 && "No Notes to Display"}
         <div className="row">
           {notes && notes.length > 0
             ? notes.map((note) => {

@@ -9,27 +9,29 @@ const Signup = (props) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       const {name,email,password} = credential;
-      const response = await fetch("http://localhost:2000/api/auth/createuser", {
+      const response = await fetch("http://localhost:5000/api/auth/createuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-            body:JSON.stringify({name,email,password})
+            body:JSON.stringify({
+              name,email,password
+            }),
         });
   
       const json = await response.json();
       console.log(json);
   
       // to redirect the page after user is created
-      if (json.success) {
-        localStorage.setItem("token",json.authtoken) 
-        props.showAlert("Account Created Successfully","success");
+      if (json.success){
+        localStorage.setItem("token",json.authtoken);
+        props.showAlert("Logged in Succesfully", "success");
         history("/");
-
-      } 
-      else {
-        props.showAlert("Invalid Credentials","danger");
+      } else {
+        props.showAlert("Invalid Credentials", "danger");
       }
+
+
     };
   
     const onChange = (e) => {
@@ -38,9 +40,13 @@ const Signup = (props) => {
 
 
   return (
-    <div className="container my-3 fw-bold " >
+    <div className="container my-3 fw-bold col-6 background1 p-5 " >
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+
+        <div className="name">
+          <h4 className="text-center mb-4">SignUp</h4>
+        </div>
+        <div className="mb-4">
           <label htmlFor="name" className="form-label">
              Name
           </label>
@@ -48,15 +54,13 @@ const Signup = (props) => {
           name="name"
           onChange={onChange}
             type="text"
-            className="form-control border border-primary"
+            className="form-control"
             id="name"
             aria-describedby="emailHelp"
           />
-          <div id="name" className="form-text">
-             Name
-          </div>
+          
         </div>
-        <div className="mb-3">
+        <div className="mb-4">
           <label htmlFor="email" className="form-label">
             Email Address
           </label>
@@ -64,13 +68,13 @@ const Signup = (props) => {
           name="email"
           onChange={onChange}
             type="email"
-            className="form-control border border-primary"
+            className="form-control "
             id="email"
             aria-describedby="emailHelp"
           />
           
         </div>
-        <div className="mb-3">
+        <div className="mb-4">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -78,20 +82,20 @@ const Signup = (props) => {
           name="password" 
           onChange={onChange} 
           type="password" 
-          className="form-control border border-primary" 
+          className="form-control " 
           id="password" 
           minLength={5} 
           required />
         </div>
-        <div className="mb-3">
+        <div className="mb-4">
           <label htmlFor="cpassword" className="form-label">
             Confirm Password
           </label>
           <input
           name="cpassword"  
-          onChange={onChange} type="password" className="form-control border border-primary" id="cpassword" minLength={5} required />
+          onChange={onChange} type="password" className="form-control " id="cpassword" minLength={5} required />
         </div>
-        <button type="submit" className="btn btn-outline-primary ">
+        <button type="submit" className="btn btn-outline-primary glow-on-hover glowing ">
           Submit
         </button>
       </form>

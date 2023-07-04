@@ -25,6 +25,8 @@ function App() {
 
   return (
     <>
+
+      
       <NoteState>
         <Router>
           <Navbar/>

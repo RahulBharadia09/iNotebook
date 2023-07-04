@@ -21,21 +21,22 @@ router.post('/createuser',[
     body('email').isEmail(),
     body('password').isLength({min: 8}),
 ],async  (req , res)=>{
-    let success=false
+    let success = false
     // if there ar error , return the errors Error Check 
     const errors =validationResult(req);
     if(!errors.isEmpty()){
+        success=false
         return res.status(400).json({success,errors: errors.array()});
     } 
-
     // Create a user
     // cheching whether the user with this email exits or not
-    try {
+    try{
     let user = await User.findOne({email:req.body.email});
     if(user){
+        success=false
         return res.status(400).json({success,error: "Sorry user exits with same email id"})
     }
-
+    success=true
     // salt and bcrypt are the way to hide the actual password in the databse for the security pupose with hash method
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password,salt) 
@@ -51,10 +52,9 @@ router.post('/createuser',[
     }
 
     const authtoken=jwt.sign(data,JWT_Secret);
-    console.log(jwtData);
-    success=true
+    // console.log(jwtData);
     res.json({success,authtoken})
-    }catch (error) {
+}catch(error) {
         console.error(error.message);    
         res.status(500).send("Some Error Occured");
     }
@@ -70,11 +70,11 @@ router.post('/login',[
     body('email', "Enter  a Valid Email").isEmail(),
     body('password', "Password cannot be Blank ").exists(),
 ],async(req,res)=>{
-    let success = false
+    let success = false;
     // throw back error without disturbing the db and server
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        return res.status(400).json({success,errors: errors.array()});
+        return res.status(400).json({errors: errors.array()});
     }
     // Used try Catch method
     // Destructing
@@ -83,13 +83,11 @@ router.post('/login',[
     try {
         let user = await User.findOne({email});
         if(!user){
-            success=false
             return res.status(400).json({success,error:"User Doesn't Exists"})
         }
         // conparing password to login the user:
         const comparePassword = await bcrypt.compare(password,user.password);
         if(!comparePassword){
-            success=false
             return res.status(400).json({success,error : "Wrong Credential"})
         }
         const data ={

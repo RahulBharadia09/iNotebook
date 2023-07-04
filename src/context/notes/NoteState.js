@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const NoteState = (props) => {
 
-  const host = "http://localhost:2000"
+  const host = "http://localhost:5000"
   let notesIntial = [];
   const [notes, setNotes] = useState(notesIntial);
 
@@ -109,6 +109,5 @@ const NoteState = (props) => {
 
 export default NoteState;
    
-
 
 

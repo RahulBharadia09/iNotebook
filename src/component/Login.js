@@ -14,7 +14,7 @@ const Login = (props) => {
     e.preventDefault();
 
     // Here we are fetching data directly from the api
-    const response = await fetch("http://localhost:2000/api/auth/login", {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,9 +46,13 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container col-6">
+    <div className="">
+      <div className="container p-5 col-4 background1">
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mt-1 mb-4 text-center">
+          <h4 className="">Login Page</h4>
+        </div>
+        <div className="mb-4">
           <label htmlFor="email" className="form-label  fw-bold">
             Email Address
           </label>
@@ -56,7 +60,7 @@ const Login = (props) => {
             onChange={onChange}
             value={credential.email}
             type="email"
-            className="form-control border border-primary"
+            className="form-control "
             id="email"
             name="email"
             aria-describedby="emailHelp"
@@ -71,15 +75,16 @@ const Login = (props) => {
             value={credential.password}
             onChange={onChange}
             type="password"
-            className="form-control border border-primary"
+            className="form-control"
             id="password"
             name="password"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary glow-on-hover glowing ">
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 };
